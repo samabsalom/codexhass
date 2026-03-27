@@ -24,6 +24,16 @@ This keeps the following between restarts:
 - shell history
 - cloned repositories and other files saved under `/data`
 
+## Mapped Home Assistant directories
+
+The terminal also exposes these Home Assistant directories inside the workspace:
+
+- `/data/workspace/homeassistant`
+- `/data/workspace/share`
+- `/data/workspace/addon_configs`
+
+These mounts are writable.
+
 ## First Run
 
 1. Start the add-on.

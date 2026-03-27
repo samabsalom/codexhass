@@ -19,6 +19,16 @@ The add-on stores its persistent state inside Home Assistant's add-on data volum
 
 That means Codex auth, npm cache, shell history, and anything else you keep under `/data` survives restarts and upgrades.
 
+## Home Assistant mounts
+
+The workspace also includes writable mappings for common Home Assistant directories:
+
+- `/data/workspace/homeassistant`
+- `/data/workspace/share`
+- `/data/workspace/addon_configs`
+
+This keeps the add-on away from the host root while still giving terminal access to the main configuration areas that Home Assistant officially supports mapping.
+
 ## Publish To GitHub
 
 1. Create an empty GitHub repository.
