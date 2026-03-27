@@ -15,6 +15,5 @@ panel_icon: mdi:console
 panel_title: Codex Terminal
 panel_admin: true
 advanced: true
-apparmor: false
 options: {}
 schema: {}
