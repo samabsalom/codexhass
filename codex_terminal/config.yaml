@@ -1,0 +1,20 @@
+name: Codex Terminal
+version: "0.1.0"
+slug: codex_terminal
+description: >-
+  Lightweight persistent terminal for Home Assistant with npm and the OpenAI Codex CLI.
+arch:
+  - amd64
+  - aarch64
+startup: application
+boot: manual
+ingress: true
+ingress_port: 7681
+ingress_stream: true
+panel_icon: mdi:console
+panel_title: Codex Terminal
+panel_admin: true
+advanced: true
+apparmor: false
+options: {}
+schema: {}

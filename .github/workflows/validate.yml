@@ -1,0 +1,19 @@
+name: Validate
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Build add-on image
+        run: docker build --build-arg BUILD_FROM=alpine:3.22 -t codex-terminal ./codex_terminal
+
+      - name: Verify Codex CLI is available
+        run: docker run --rm --entrypoint codex codex-terminal --version
