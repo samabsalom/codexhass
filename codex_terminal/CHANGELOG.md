@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.1
+
+- Fixed Home Assistant startup by disabling Docker init for the add-on
+- Kept the Home Assistant base image init process as PID 1
+
 ## 0.1.0
 
 - Initial release

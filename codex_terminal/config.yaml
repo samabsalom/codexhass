@@ -1,5 +1,5 @@
 name: Codex Terminal
-version: "0.1.0"
+version: "0.1.1"
 slug: codex_terminal
 description: >-
   Lightweight persistent terminal for Home Assistant with npm and the OpenAI Codex CLI.
@@ -15,5 +15,6 @@ panel_icon: mdi:console
 panel_title: Codex Terminal
 panel_admin: true
 advanced: true
+init: false
 options: {}
 schema: {}
