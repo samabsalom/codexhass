@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.3
+
+- Added `zsh`, `oh-my-zsh`, and `tmux`
+- Started the terminal inside a persistent tmux session named `workspace`
+- Added Linux-safe `zsh` and `tmux` defaults adapted from the owner's dotfiles
+
 ## 0.1.2
 
 - Mapped Home Assistant config, share, and add-on config directories into `/data/workspace`

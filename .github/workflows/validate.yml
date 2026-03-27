@@ -18,6 +18,15 @@ jobs:
       - name: Verify Codex CLI is available
         run: docker run --rm --entrypoint codex codex-terminal --version
 
+      - name: Verify zsh and tmux defaults
+        run: |
+          docker run --rm --entrypoint sh codex-terminal -lc '
+            tmp=$(mktemp -d)
+            mkdir -p "$tmp/home"
+            cp /opt/codex-terminal-defaults/zshrc "$tmp/home/.zshrc"
+            HOME="$tmp/home" zsh -ic "echo ZSH_OK >/dev/null && tmux -V >/dev/null"
+          '
+
       - name: Smoke test terminal
         run: |
           mkdir -p "$RUNNER_TEMP/codex-terminal-data"

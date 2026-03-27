@@ -2,7 +2,7 @@
 set -euo pipefail
 
 export HOME=/data/home
-export SHELL=/bin/bash
+export SHELL=/bin/zsh
 export TERM=xterm-256color
 export COLORTERM=truecolor
 export EDITOR=nano
@@ -11,7 +11,7 @@ export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_CACHE_HOME="${HOME}/.cache"
 export NPM_CONFIG_CACHE="${HOME}/.npm"
 export NPM_CONFIG_PREFIX="${HOME}/.npm-global"
-export PATH="${NPM_CONFIG_PREFIX}/bin:${PATH}"
+export PATH="${HOME}/.local/bin:${HOME}/bin:${NPM_CONFIG_PREFIX}/bin:${PATH}"
 
 WORKSPACE=/data/workspace
 
@@ -24,29 +24,14 @@ mkdir -p \
   "${WORKSPACE}"
 
 touch "${HOME}/.bash_history"
+touch "${HOME}/.zsh_history"
 
-if [[ ! -f "${HOME}/.bash_profile" ]]; then
-  cat > "${HOME}/.bash_profile" <<'EOF'
-if [[ -f "${HOME}/.bashrc" ]]; then
-  . "${HOME}/.bashrc"
-fi
-EOF
+if [[ ! -f "${HOME}/.zshrc" ]]; then
+  cp /opt/codex-terminal-defaults/zshrc "${HOME}/.zshrc"
 fi
 
-if [[ ! -f "${HOME}/.bashrc" ]]; then
-  cat > "${HOME}/.bashrc" <<'EOF'
-export PATH="${HOME}/.npm-global/bin:${PATH}"
-export NPM_CONFIG_PREFIX="${HOME}/.npm-global"
-export NPM_CONFIG_CACHE="${HOME}/.npm"
-export XDG_CONFIG_HOME="${HOME}/.config"
-export XDG_CACHE_HOME="${HOME}/.cache"
-export TERM=xterm-256color
-export COLORTERM=truecolor
-export EDITOR=nano
-export PAGER=less
-export PS1='[\u@codex \W]\$ '
-cd /data/workspace
-EOF
+if [[ ! -f "${HOME}/.tmux.conf" ]]; then
+  cp /opt/codex-terminal-defaults/tmux.conf "${HOME}/.tmux.conf"
 fi
 
 cat > /etc/motd <<'EOF'
@@ -56,7 +41,8 @@ Persistent paths:
   HOME      -> /data/home
   workspace -> /data/workspace
 
-Codex login, npm cache, shell history, and everything under /data survive restarts.
+This terminal starts in a persistent tmux session named "workspace".
+Close the browser tab and reconnect later to resume the same session.
 EOF
 
 cd "${WORKSPACE}"
@@ -65,4 +51,4 @@ exec ttyd \
   -p 7681 \
   -t titleFixed="Codex Terminal" \
   -t fontSize=15 \
-  /bin/bash --login
+  /usr/local/bin/start-shell.sh

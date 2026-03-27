@@ -4,6 +4,8 @@ This repository contains a custom Home Assistant add-on that provides a lightwei
 
 - `npm`
 - `codex`
+- `zsh` with `oh-my-zsh`
+- `tmux`
 - persistent shell state under `/data`
 
 ## Included add-on
@@ -18,6 +20,8 @@ The add-on stores its persistent state inside Home Assistant's add-on data volum
 - workspace: `/data/workspace`
 
 That means Codex auth, npm cache, shell history, and anything else you keep under `/data` survives restarts and upgrades.
+
+The interactive terminal starts inside a persistent tmux session named `workspace`, so you can close the browser tab and reconnect later without losing that terminal session while the add-on remains running.
 
 ## Home Assistant mounts
 
@@ -62,3 +66,4 @@ git remote add origin https://github.com/<your-user>/<your-repo>.git
 
 - The add-on is built from source by Home Assistant because `config.yaml` intentionally omits an `image` field.
 - The current Codex CLI package publishes Linux binaries for `amd64` and `aarch64`, so the add-on is limited to those Home Assistant architectures.
+- The `zsh` and `tmux` defaults are adapted from the owner's dotfiles and vendored into this repository so the add-on does not need GitHub credentials at runtime.

@@ -1,0 +1,58 @@
+# Adapted from samabsalom/dotfiles for the Home Assistant add-on environment.
+
+export PATH="$HOME/.local/bin:$HOME/bin:$HOME/.npm-global/bin:/usr/local/bin:$PATH"
+
+export ZSH="/opt/oh-my-zsh"
+export ZSH_DISABLE_COMPFIX="true"
+DISABLE_AUTO_UPDATE="true"
+
+ZSH_THEME="ys"
+ENABLE_CORRECTION="true"
+
+plugins=(
+  git
+  sudo
+  colored-man-pages
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+)
+
+source "$ZSH/oh-my-zsh.sh"
+
+alias gpush='git push origin HEAD'
+alias myip='curl -fsS icanhazip.com || true'
+alias tmstart='tmux has-session -t workspace 2>/dev/null && tmux attach-session -t workspace || tmux new-session -s workspace -c /data/workspace'
+
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+HISTSIZE=10000
+SAVEHIST=10000
+HISTFILE=~/.zsh_history
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_FIND_NO_DUPS
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_BEEP
+
+setopt AUTO_CD
+setopt AUTO_PUSHD
+setopt PUSHD_IGNORE_DUPS
+
+setopt COMPLETE_ALIASES
+setopt LIST_PACKED
+
+if [[ -n "${TMUX:-}" ]]; then
+  exit() {
+    tmux detach
+  }
+fi
